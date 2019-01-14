@@ -12,17 +12,9 @@ class Settings {
     @observable confirmImagePaste = true;
     @observable startup = false;
     @observable blockRecall = false;
-    @observable remeberConversation = false;
+    @observable rememberConversation = false;
     @observable showRedIcon = true;
     @observable downloads = '';
-    @observable plugins = [{
-        name: 'Message Backup',
-        link: 'https://github.com/trazyn',
-        description: 'Curabitur lobortis id lorem id bibendum. Ut id consectetur magna. Quisque volutpat augue enim, pulvinar lobortis nibh lacinia at. Vestibulum nec erat ut mi sollicitudin porttitor id sit amet risus. Nam tempus vel odio vitae aliquam. In imperdiet eros id lacus vestibulum vestibulum. Suspendisse fermentum sem sagittis ante venenatis egestas quis vel justo. Maecenas semper suscipit nunc, sed aliquam sapien convallis eu. Nulla ut turpis in diam dapibus consequat.',
-        version: '1.0.1',
-        icon: 'https://lh6.ggpht.com/k7Z4J1IIXXJnC2NRnFfJNlkn7kZge4Zx-Yv5uqYf4222tx74wXDzW24OvOxlcpw0KcQ=w300',
-        enabled: true,
-    }];
 
     @action setAlwaysOnTop(alwaysOnTop) {
         self.alwaysOnTop = alwaysOnTop;
@@ -34,8 +26,8 @@ class Settings {
         self.save();
     }
 
-    @action setRemeberConversation(remeberConversation) {
-        self.remeberConversation = remeberConversation;
+    @action setRememberConversation(rememberConversation) {
+        self.rememberConversation = rememberConversation;
         self.save();
     }
 
@@ -71,7 +63,7 @@ class Settings {
 
     @action async init() {
         var settings = await storage.get('settings');
-        var { alwaysOnTop, showOnTray, showNotification, blockRecall, remeberConversation, showRedIcon, startup, downloads } = self;
+        var { alwaysOnTop, showOnTray, showNotification, blockRecall, rememberConversation, showRedIcon, startup, downloads } = self;
 
         if (settings && Object.keys(settings).length) {
             // Use !! force convert to a bool value
@@ -81,7 +73,7 @@ class Settings {
             self.confirmImagePaste = !!settings.confirmImagePaste;
             self.startup = !!settings.startup;
             self.blockRecall = !!settings.blockRecall;
-            self.remeberConversation = !!settings.remeberConversation;
+            self.rememberConversation = !!settings.rememberConversation;
             self.showRedIcon = !!settings.showRedIcon;
             self.downloads = settings.downloads;
         } else {
@@ -92,7 +84,7 @@ class Settings {
                 startup,
                 downloads,
                 blockRecall,
-                remeberConversation,
+                rememberConversation,
                 showRedIcon,
             });
         }
@@ -112,7 +104,7 @@ class Settings {
     }
 
     save() {
-        var { alwaysOnTop, showOnTray, showNotification, confirmImagePaste, blockRecall, remeberConversation, showRedIcon, startup, downloads } = self;
+        var { alwaysOnTop, showOnTray, showNotification, confirmImagePaste, blockRecall, rememberConversation, showRedIcon, startup, downloads } = self;
 
         storage.set('settings', {
             alwaysOnTop,
@@ -122,7 +114,7 @@ class Settings {
             startup,
             downloads,
             blockRecall,
-            remeberConversation,
+            rememberConversation,
             showRedIcon,
         });
 
@@ -135,7 +127,7 @@ class Settings {
                 startup,
                 downloads,
                 blockRecall,
-                remeberConversation,
+                rememberConversation,
                 showRedIcon,
             }
         });

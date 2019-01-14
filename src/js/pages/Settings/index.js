@@ -22,46 +22,16 @@ import helper from 'utils/helper';
     setConfirmImagePaste: stores.settings.setConfirmImagePaste,
     blockRecall: stores.settings.blockRecall,
     setBlockRecall: stores.settings.setBlockRecall,
-    remeberConversation: stores.settings.remeberConversation,
-    setRemeberConversation: stores.settings.setRemeberConversation,
+    rememberConversation: stores.settings.rememberConversation,
+    setRememberConversation: stores.settings.setRememberConversation,
     showRedIcon: stores.settings.showRedIcon,
     setShowRedIcon: stores.settings.setShowRedIcon,
 
     user: stores.session.user,
     logout: stores.session.logout,
-    plugins: stores.settings.plugins,
 }))
 @observer
 export default class Settings extends Component {
-    renderPlugins(plugins) {
-        return plugins.map((e, index) => {
-            return (
-                <div
-                    className={classes.plugin}
-                    key={index}>
-                    <img src={e.icon} />
-
-                    <div className={classes.detail}>
-                        <p>
-                            <span>{e.name}</span>
-                            <span className={classes.version}>{e.version}</span>
-                        </p>
-                        <p>
-                            <a
-                                href={e.link}
-                                target="_bank">
-                                View on Github
-                            </a>
-                        </p>
-                        <div className={classes.description}>{e.description}</div>
-                    </div>
-
-                    <Switch defaultChecked={e.enabled} />
-                </div>
-            );
-        });
-    }
-
     choiceDownloadDir() {
         this.refs.downloads.click();
     }
@@ -86,11 +56,10 @@ export default class Settings extends Component {
             setConfirmImagePaste,
             blockRecall,
             setBlockRecall,
-            remeberConversation,
-            setRemeberConversation,
+            rememberConversation,
+            setRememberConversation,
             showRedIcon,
             setShowRedIcon,
-            plugins,
             user,
         } = this.props;
 
@@ -162,12 +131,12 @@ export default class Settings extends Component {
                         </li>
 
                         <li>
-                            <label htmlFor="remeberConversation">
-                                <span>Remeber the last Conversation</span>
+                            <label htmlFor="rememberConversation">
+                                <span>Remember the last Conversation</span>
                                 <Switch
-                                    checked={remeberConversation}
-                                    id="remeberConversation"
-                                    onChange={e => setRemeberConversation(e.target.checked)} />
+                                    checked={rememberConversation}
+                                    id="rememberConversation"
+                                    onChange={e => setRememberConversation(e.target.checked)} />
                             </label>
                         </li>
 
@@ -203,11 +172,7 @@ export default class Settings extends Component {
                     </ul>
                 </div>
                 <div className={classes.column}>
-                    <h2>Plugins</h2>
-
-                    {
-                        this.renderPlugins(plugins)
-                    }
+                    <h2>TODO:</h2>
                 </div>
             </div>
         );
